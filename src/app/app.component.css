@@ -1,0 +1,13 @@
+.main-menu{
+    list-style: none;
+    float: left;
+}
+
+.main-menu li{
+    float: left;
+    margin-right: 5px; margin-left: 5px;
+}
+
+.clearDiv{
+    clear: both;
+}
