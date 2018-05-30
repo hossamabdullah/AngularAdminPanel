@@ -1,16 +1,14 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component'
+import {AssetsComponent} from './assets/assets.component';
+import {ParticipantComponent} from './participant/participant.component'
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {path: 'home', component: HomeComponent}
-    // {path: 'login', component: LoginComponent},
-    // {path: 'register', component: RegisterationComponent},
-    // {path: 'home', component: HomePageComponent, canActivate: [AuthenticationGuard], children:[
-    //     {path: '', component: UserInfoComponent},
-    //     {path: 'edit', component: UserEditComponent}
-    // ]}
+    {path: 'home', component: HomeComponent},
+    {path: 'participants', component: ParticipantComponent},
+    {path: 'assets', component: AssetsComponent}
 ];
 
 @NgModule({
