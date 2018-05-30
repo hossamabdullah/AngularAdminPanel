@@ -1,3 +1,5 @@
-<p>
-  home works!
-</p>
+<form [formGroup]="sampleForm" (ngSubmit)="save()">
+  <input type="text" formControlName="username"/>
+  <input type="password" formControlName="password"/>
+  <input type="submit" value="submit"/>
+</form>
