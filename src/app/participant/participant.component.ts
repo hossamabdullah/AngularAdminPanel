@@ -8,11 +8,15 @@ import { User } from '../types/user.model';
   styleUrls: ['./participant.component.css']
 })
 export class ParticipantComponent implements OnInit {
-  participants: Array<User>;
+  participants: User[] = [new User("name", "address", "phone", "email", "birthday", "gender", 123, 'key')];
 
   constructor(private hyperLedgerService: HyperledgerService) { }
 
   ngOnInit() {
-    this.participants = this.hyperLedgerService.getUsers();
+    console.log(this.participants);
+    // let user = new User("name", "address", "phone", "email", "birthday", "gender", 123, 'key');
+    // this.participants = [user]
+    
+    // this.participants = this.hyperLedgerService.getUsers();
   }
 }

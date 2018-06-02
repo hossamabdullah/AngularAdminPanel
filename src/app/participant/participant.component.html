@@ -1,40 +1,38 @@
-<p>
-  participant works!
-  <div>
-    <!--TODO how to loop through a list in Typescript in view -->
-    <div class="participants-table data-table"><!--this is the div to loop through-->
-      <div class="participants-field data-table-field">
-        <div>name</div>
-        <div>{{user.name}}</div>
-      </div>
-      <div class="participants-field data-table-field">
-        <div>address</div>
-        <div>{{user.address}}</div>
-      </div>
-      <div class="participants-field data-table-field">
-        <div>phone</div>
-        <div>{{user.phone}}</div>
-      </div>
-      <div class="participants-field data-table-field">
-        <div>email</div>
-        <div>{{user.email}}</div>
-      </div>
-      <div class="participants-field data-table-field">
-        <div>birthday</div>
-        <div>{{user.birthday}}</div>
-      </div>
-      <div class="participants-field data-table-field">
-        <div>gender</div>
-        <div>{{user.gender}}</div>
-      </div>
-      <div class="participants-field data-table-field">
-        <div>balance</div>
-        <div>{{user.balance}}</div>
-      </div>
-      <div class="participants-field data-table-field">
-        <div>key</div>
-        <div>{{user.key}}</div>
-      </div>
+participant works!
+<div>
+  <!--TODO how to loop through a list in Typescript in view -->
+  <div class="participants-table data-table" *ngFor="let user of participants"><!--this is the div to loop through-->
+    <div class="participants-field data-table-field">
+      <span>name: </span>
+      <span>{{user.name}}</span>
+    </div>
+    <div class="participants-field data-table-field">
+      <span>address: </span>
+      <span>{{user.address}}</span>
+    </div>
+    <div class="participants-field data-table-field">
+      <span>phone: </span>
+      <span>{{user.phone}}</span>
+    </div>
+    <div class="participants-field data-table-field">
+      <span>email: </span>
+      <span>{{user.email}}</span>
+    </div>
+    <div class="participants-field data-table-field">
+      <span>birthday: </span>
+      <span>{{user.birthday}}</span>
+    </div>
+    <div class="participants-field data-table-field">
+      <span>gender: </span>
+      <span>{{user.gender}}</span>
+    </div>
+    <div class="participants-field data-table-field">
+      <span>balance: </span>
+      <span>{{user.balance}}</span>
+    </div>
+    <div class="participants-field data-table-field">
+      <span>key: </span>
+      <span>{{user.key}}</span>
     </div>
   </div>
-</p>
+</div>

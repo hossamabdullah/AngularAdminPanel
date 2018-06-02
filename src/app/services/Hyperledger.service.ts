@@ -2,16 +2,19 @@ import {Injectable} from '@angular/core';
 import { User } from '../types/user.model';
 import { Asset } from '../types/asset.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class HyperledgerService{
     //TODO check if declaring of array is correct this way
-    users: Array<User>;
-    assets: Array<Asset>;
+    users: User[];
+    assets: Asset[];
 
-    getUsers(): Array<User>{
-        return null;
+    getUsers(): User[]{
         //TODO call webservice to get users
-        //TODO store values in users list
+        let user = new User("name", "address", "phone", "email", "birthday", "gender", 123, 'key');
+        this.users = [user];
+        return this.users;
     }
 
     updateUser(user: User){
