@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AssetsComponent } from './assets/assets.component';
 import { ParticipantComponent } from './participant/participant.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { ModeratorComponent } from './moderator/moderator.component';
+import { DocumentComponent } from './document/document.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { ParticipantComponent } from './participant/participant.component';
     HomeComponent,
     AssetsComponent,
     ParticipantComponent,
+    EmployeeComponent,
+    ModeratorComponent,
+    DocumentComponent,
   ],
   imports: [
     BrowserModule,

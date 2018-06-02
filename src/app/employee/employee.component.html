@@ -10,6 +10,7 @@
               <th>gender</th>
               <th>balance</th>
               <th>key</th>
+              <th>actions</th>
           </tr>
       </thead>
       <tbody>
@@ -22,7 +23,15 @@
               <td>{{user.gender}}</td>
               <td>{{user.balance}}</td>
               <td>{{user.key}}</td>
+              <td>
+                  <button type="button" class="btn btn-warning" ng-click="console.log('go on')">Edit</button>
+                  <button type="button" class="btn btn-danger">Danger</button>
+              </td>
           </tr>
       </tbody>
     </table>
-  </div>
+</div>
+
+<script>
+  console.log("hello world")
+</script>
