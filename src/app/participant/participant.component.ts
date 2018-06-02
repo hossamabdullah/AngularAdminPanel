@@ -16,7 +16,7 @@ export class ParticipantComponent implements OnInit {
     console.log(this.participants);
     // let user = new User("name", "address", "phone", "email", "birthday", "gender", 123, 'key');
     // this.participants = [user]
-    
+    ////////////////
     // this.participants = this.hyperLedgerService.getUsers();
   }
 }
