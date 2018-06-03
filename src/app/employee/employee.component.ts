@@ -20,6 +20,7 @@ export class EmployeeComponent implements OnInit {
 
   editEmployee(event, user:User){
     this.hyperLedgerService.updateUser(user);
+    console.log(user);
   }
 
   removeEmployee(event, user){
