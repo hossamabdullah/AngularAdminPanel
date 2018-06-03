@@ -15,23 +15,35 @@
       </thead>
       <tbody>
           <tr *ngFor="let user of participants">
-              <td>{{user.name}}</td>
-              <td>{{user.address}}</td>
-              <td>{{user.phone}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.birthday}}</td>
-              <td>{{user.gender}}</td>
-              <td>{{user.balance}}</td>
-              <td>{{user.key}}</td>
-              <td>
-                  <button type="button" class="btn btn-warning" ng-click="console.log('go on')">Edit</button>
-                  <button type="button" class="btn btn-danger">Danger</button>
-              </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.name}}"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.address}}"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.phone}}"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.email}}"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.birthday}}"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.gender}}"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.balance}}"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" placeholder="{{user.key}}"/>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning" (click)="editEmployee($event, user)">Edit</button>
+                    <button type="button" class="btn btn-danger" (click)="removeEmployee($event, user)">x</button>
+                </td>
           </tr>
       </tbody>
     </table>
 </div>
-
-<script>
-  console.log("hello world")
-</script>
