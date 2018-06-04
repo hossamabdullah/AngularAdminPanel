@@ -14,13 +14,10 @@ export class EmployeeComponent implements OnInit {
   isSaveMode=true;
   isEditMode=false;
 
-  constructor(private hyperLedgerService: HyperledgerService) { 
-  }
-
+  constructor(private hyperLedgerService: HyperledgerService) {}
 
   ngOnInit() {
     this.participants = this.hyperLedgerService.getUsers();
-
     this.sampleForm = new FormGroup({
       'name': new FormControl(),
       'address': new FormControl(),
@@ -31,9 +28,6 @@ export class EmployeeComponent implements OnInit {
       'balance': new FormControl(),
       'key': new FormControl(),
     });
-
-    console.log(this.sampleForm)
-    
   }
 
   enableEditEmployee(event, user:User){
@@ -49,14 +43,9 @@ export class EmployeeComponent implements OnInit {
     });
     this.isSaveMode=false;
     this.isEditMode=true;
-
-    this.hyperLedgerService.updateUser(user);
   }
 
-  removeEmployee(event, user){
-    this.hyperLedgerService.removeUser(user);
-  }
-
+  
   enableSaveMode(){
     this.sampleForm.setValue({
       name: "",
@@ -84,11 +73,14 @@ export class EmployeeComponent implements OnInit {
     let key = this.sampleForm.controls.key.value;
     if(this.isSaveMode){
       let user = new User(name, address, phone, email, birthday, gender, balance, key);
-      //TODO save
+      this.hyperLedgerService.addUser(user);
     }
     if(this.isEditMode){
       let user = new User(name, address, phone, email, birthday, gender, balance, key);
-      //TODO edit
+      this.hyperLedgerService.updateUser(user);
     }
   }
+    removeEmployee(event, user){
+      this.hyperLedgerService.removeUser(user);
+    }
 }
