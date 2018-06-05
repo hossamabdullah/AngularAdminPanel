@@ -21,7 +21,8 @@ export class EmployeeComponent implements OnInit {
     this.sampleForm = new FormGroup({
       'traderId': new FormControl(),
       'firstName': new FormControl(),
-      'lastName': new FormControl()
+      'lastName': new FormControl(),
+      'balance': new FormControl()
     });
   }
 
@@ -30,6 +31,7 @@ export class EmployeeComponent implements OnInit {
       traderId: user.traderId,
       firstName: user.firstName,
       lastName: user.lastName,
+      balance: user.balance
     });
     this.isSaveMode=false;
     this.isEditMode=true;
@@ -41,6 +43,7 @@ export class EmployeeComponent implements OnInit {
       traderId: "",
       firstName: "",
       lastName: "",
+      balance: ""
     });
     this.isSaveMode=true;
     this.isEditMode=false;
@@ -51,13 +54,13 @@ export class EmployeeComponent implements OnInit {
     let traderId = this.sampleForm.controls.traderId.value;
     let firstName = this.sampleForm.controls.firstName.value;
     let lastName = this.sampleForm.controls.lastName.value;
-
+    let balance = this.sampleForm.controls.balance.value;
     if(this.isSaveMode){
-      let user = new User(traderId, firstName, lastName);
+      let user = new User(traderId, firstName, lastName, balance);
       this.hyperLedgerService.addUser(user);
     }
     if(this.isEditMode){
-      let user = new User(traderId, firstName, lastName);
+      let user = new User(traderId, firstName, lastName, balance);
       this.hyperLedgerService.updateUser(user);
     }
   }

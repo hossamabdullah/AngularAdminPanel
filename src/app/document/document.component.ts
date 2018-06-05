@@ -19,17 +19,19 @@ export class DocumentComponent implements OnInit {
   ngOnInit() {
     this.assets = this.hyperLedgerService.getAssets();
     this.sampleForm = new FormGroup({
-      'id': new FormControl(),
+      'tradingSymbol': new FormControl(),
+      'name': new FormControl(),
+      'description': new FormControl(),
       'value': new FormControl(),
-      'type': new FormControl(),
     });
   }
 
   enableSaveMode(){
     this.sampleForm.setValue({
-      id: '',
+      tradingSymbol: '',
       value: '',
-      type: ''
+      name: '',
+      description: ''
     });
     this.isSaveMode=true;
     this.isEditMode=false;
@@ -37,19 +39,21 @@ export class DocumentComponent implements OnInit {
 
   enableEditAsset(event, asset:Asset){
     this.sampleForm.setValue({
-      id: asset.id,
+      tradingSymbol: asset.tradingSymbol,
       value: asset.value,
-      type: asset.type
+      name: asset.name,
+      description: asset.description
     });    
     this.isSaveMode=false;
     this.isEditMode=true;
   }
 
   save(){
-    let id = this.sampleForm.controls.id.value;
+    let tradingSymbol = this.sampleForm.controls.tradingSymbol.value;
+    let description = this.sampleForm.controls.description.value;
+    let name = this.sampleForm.controls.name.value;
     let value = this.sampleForm.controls.value.value;
-    let type = this.sampleForm.controls.type.value;
-    let asset= new Asset(id, value, type);
+    let asset= new Asset(tradingSymbol, name, description, value)
     if(this.isSaveMode){
       this.hyperLedgerService.addAsset(asset);
     }else{

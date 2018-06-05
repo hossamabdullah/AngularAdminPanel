@@ -1,14 +1,14 @@
 export class Asset{
-    id: Text;
+    tradingSymbol: Text;
+    name: Text;
+    description: Text;
     value: Number;
-    type: Text;
-    //TODO dict of extra parameters to be added
 
-    constructor(id, value, type){
-        this.id = id;
-        //TODO move to setter
+    constructor(tradingSymbol, name, description, value){
+        this.tradingSymbol = tradingSymbol;
         if(value < 100000000)
             this.value = value;
-        this.type = type;
+        this.name = name;
+        this.description = description;
     }
 }

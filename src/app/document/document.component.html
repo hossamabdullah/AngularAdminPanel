@@ -8,17 +8,18 @@
     <table id="example" class="table table-striped table-bordered" style="width:100%">
       <thead>
           <tr>
-              <th>id</th>
+              <th>tradingSymbol</th>
+              <th>name</th>
+              <th>description</th>
               <th>value</th>
-              <th>type</th>
-              <th>actions</th>
           </tr>
       </thead>
       <tbody>
           <tr *ngFor="let asset of assets">
-                <td>{{asset.id}}</td>
+                <td>{{asset.tradingSymbol}}</td>
+                <td>{{asset.name}}</td>
+                <td>{{asset.description}}</td>
                 <td>{{asset.value}}</td>
-                <td>{{asset.type}}</td>
                 <td>
                     <button type="button" class="btn btn-warning" (click)="enableEditAsset($event, asset)" data-toggle="modal" data-target="#assetmodal">Edit</button>
                     <button type="button" class="btn btn-danger" (click)="removeAsset($event, asset)">x</button>
@@ -42,12 +43,14 @@
         <form [formGroup]="sampleForm" (ngSubmit)="save()">
             <!-- Modal body -->
             <div class="modal-body">
-                    id
-                    <input class="form-control form-control-sm" type="text" formControlName="id"    placeholder="id"/>
+                    tradingSymbol
+                    <input class="form-control form-control-sm" type="text" formControlName="tradingSymbol" placeholder="id"/>
+                    name
+                    <input class="form-control form-control-sm" type="text" formControlName="name" placeholder="value"/>
+                    description
+                    <input class="form-control form-control-sm" type="text" formControlName="description" placeholder="type"/>
                     value
-                    <input class="form-control form-control-sm" type="text" formControlName="value"   placeholder="value"/>
-                    type
-                    <input class="form-control form-control-sm" type="text" formControlName="type"    placeholder="type"/>
+                    <input class="form-control form-control-sm" type="text" formControlName="value" placeholder="type"/>
             </div>
         
             <!-- Modal footer -->

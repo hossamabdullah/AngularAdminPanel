@@ -13,11 +13,11 @@ export class HyperledgerService{
 
     getUsers(): User[]{
         //TODO call webservice to get users
-        let user1 = new User("111", "address", "phone");
-        let user3 = new User("222", "address", "phone");
-        let user2 = new User("333", "address", "phone");
-        let user4 = new User("444", "address", "phone");
-        let user5 = new User("555", "address", "phone");
+        let user1 = new User("111", "address", "phone", 123);
+        let user3 = new User("222", "address", "phone", 123);
+        let user2 = new User("333", "address", "phone", 123);
+        let user4 = new User("444", "address", "phone", 123);
+        let user5 = new User("555", "address", "phone", 123);
         this.users = [user1, user2, user3, user4, user5];
         return this.users;
     }
@@ -47,11 +47,11 @@ export class HyperledgerService{
     ////////////////////////////////////////////////
     getAssets(): Asset[]{
         //TODO call webservice to get assets
-        let asset1 = new Asset(11, 123, "bb");
-        let asset2 = new Asset(22, 123, "bb");
-        let asset3 = new Asset(33, 123, "bb");
-        let asset4 = new Asset(44, 123, "bb");
-        let asset5 = new Asset(55, 123, "bb");
+        let asset1 = new Asset("id1", "aa", "aa", 111);
+        let asset2 = new Asset("id2", "aa", "aa", 222);
+        let asset3 = new Asset("id3", "aa", "aa", 333);
+        let asset4 = new Asset("id4", "aa", "aa", 444);
+        let asset5 = new Asset("id5", "aa", "aa", 555);
         this.assets = [asset1, asset2, asset3, asset4, asset5];
         return this.assets;
     }
