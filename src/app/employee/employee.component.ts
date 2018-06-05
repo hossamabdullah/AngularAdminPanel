@@ -31,12 +31,12 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  enableEditEmployee(event, user:User){
+  enableEditEmployee(event, user){
     this.sampleForm.setValue({
-      traderId: user.traderId,
+      traderId: user.tradeId,
       firstName: user.firstName,
       lastName: user.lastName,
-      balance: user.balance
+      balance: '123'
     });
     this.isSaveMode=false;
     this.isEditMode=true;
@@ -66,7 +66,10 @@ export class EmployeeComponent implements OnInit {
     }
     if(this.isEditMode){
       let user = new User(traderId, firstName, lastName, balance);
-      this.hyperLedgerService.updateUser(user);
+      this.hyperLedgerService.updateUser(user).subscribe(
+      (response)=>console.log(response),
+      (error)=>console.log(error)
+      );
     }
   }
 

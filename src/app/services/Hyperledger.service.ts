@@ -17,23 +17,17 @@ export class HyperledgerService{
     }
 
     updateUser(user: User){
-        //TODO update user
         console.log("updating user: "+user);
-        // var index = this.users.indexOf(user, 0);
-        // this.users[index] = user
+        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId, user);
     }
 
     addUser(user: User){
-        //TODO add user
+        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Trader', user);
     }
 
     removeUser(user: User){
-        //TODO delete user
         console.log("removing user: "+user);
-        // var index = this.users.indexOf(user, 0);
-        // if (index > -1) {
-        //     this.users.splice(index, 1);
-        // }
+        return this.http.delete('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId);
     }
 
     ////////////////////////////////////////////////
