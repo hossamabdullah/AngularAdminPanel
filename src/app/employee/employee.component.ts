@@ -17,7 +17,12 @@ export class EmployeeComponent implements OnInit {
   constructor(private hyperLedgerService: HyperledgerService) {}
 
   ngOnInit() {
-    this.participants = this.hyperLedgerService.getUsers();
+    this.hyperLedgerService.getUsers().subscribe(
+      (response) => {
+        this.participants = response.json()
+      },(error) => console.log(error)
+    );
+
     this.sampleForm = new FormGroup({
       'traderId': new FormControl(),
       'firstName': new FormControl(),

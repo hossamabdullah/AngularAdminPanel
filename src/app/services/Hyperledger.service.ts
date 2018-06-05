@@ -7,19 +7,13 @@ import { Http } from '@angular/http';
     providedIn: 'root'
 })
 export class HyperledgerService{
-    http: Http;
     users: User[];
     assets: Asset[];
+    a = 2;
+    constructor(private http: Http){}
 
-    getUsers(): User[]{
-        //TODO call webservice to get users
-        let user1 = new User("111", "address", "phone", 123);
-        let user3 = new User("222", "address", "phone", 123);
-        let user2 = new User("333", "address", "phone", 123);
-        let user4 = new User("444", "address", "phone", 123);
-        let user5 = new User("555", "address", "phone", 123);
-        this.users = [user1, user2, user3, user4, user5];
-        return this.users;
+    getUsers(){
+        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trader');
     }
 
     updateUser(user: User){
