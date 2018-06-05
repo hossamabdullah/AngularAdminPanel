@@ -1,21 +1,23 @@
 import {Injectable} from '@angular/core';
 import { User } from '../types/user.model';
 import { Asset } from '../types/asset.model';
+import { Http } from '@angular/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HyperledgerService{
+    http: Http;
     users: User[];
     assets: Asset[];
 
     getUsers(): User[]{
         //TODO call webservice to get users
-        let user1 = new User("name", "address", "phone", "email", "birthday", "gender", 11, 'key');
-        let user2 = new User("name", "address", "phone", "email", "birthday", "gender", 22, 'key');
-        let user3 = new User("name", "address", "phone", "email", "birthday", "gender", 33, 'key');
-        let user4 = new User("name", "address", "phone", "email", "birthday", "gender", 44, 'key');
-        let user5 = new User("name", "address", "phone", "email", "birthday", "gender", 55, 'key');
+        let user1 = new User("111", "address", "phone");
+        let user3 = new User("222", "address", "phone");
+        let user2 = new User("333", "address", "phone");
+        let user4 = new User("444", "address", "phone");
+        let user5 = new User("555", "address", "phone");
         this.users = [user1, user2, user3, user4, user5];
         return this.users;
     }

@@ -1,21 +1,11 @@
 export class User{
-    name: Text;
-    address: Text;
-    phone: Text;
-    email: Text;
-    birthday: Text;
-    gender: Text;
-    balance: Number;
-    key: Text;
-
-    constructor(name, address, phone, email, birthday, gender, balance, key){
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.balance = balance;
-        this.key = key;
+    traderId: Text;
+    firstName: Text;
+    lastName: Text;
+    
+    constructor(traderId, firstName, lastName){
+        this.traderId = traderId;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }

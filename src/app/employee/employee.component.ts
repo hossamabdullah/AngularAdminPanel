@@ -19,27 +19,17 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.participants = this.hyperLedgerService.getUsers();
     this.sampleForm = new FormGroup({
-      'name': new FormControl(),
-      'address': new FormControl(),
-      'phone': new FormControl(),
-      'email': new FormControl(),
-      'birthday': new FormControl(),
-      'gender': new FormControl(),
-      'balance': new FormControl(),
-      'key': new FormControl(),
+      'traderId': new FormControl(),
+      'firstName': new FormControl(),
+      'lastName': new FormControl()
     });
   }
 
   enableEditEmployee(event, user:User){
     this.sampleForm.setValue({
-      name: user.name,
-      address: user.address,
-      phone: user.phone,
-      email: user.email,
-      birthday: user.birthday,
-      gender: user.gender,
-      balance: user.balance,
-      key: user.key
+      traderId: user.traderId,
+      firstName: user.firstName,
+      lastName: user.lastName,
     });
     this.isSaveMode=false;
     this.isEditMode=true;
@@ -48,14 +38,9 @@ export class EmployeeComponent implements OnInit {
   
   enableSaveMode(){
     this.sampleForm.setValue({
-      name: "",
-      address: "",
-      phone: "",
-      email: "",
-      birthday: "",
-      gender: "",
-      balance: "",
-      key: ""
+      traderId: "",
+      firstName: "",
+      lastName: "",
     });
     this.isSaveMode=true;
     this.isEditMode=false;
@@ -63,24 +48,21 @@ export class EmployeeComponent implements OnInit {
   }
   
   save() {
-    let name = this.sampleForm.controls.name.value;
-    let address = this.sampleForm.controls.address.value;
-    let phone = this.sampleForm.controls.phone.value;
-    let email = this.sampleForm.controls.email.value;
-    let birthday = this.sampleForm.controls.birthday.value;
-    let gender = this.sampleForm.controls.gender.value;
-    let balance = this.sampleForm.controls.balance.value;
-    let key = this.sampleForm.controls.key.value;
+    let traderId = this.sampleForm.controls.traderId.value;
+    let firstName = this.sampleForm.controls.firstName.value;
+    let lastName = this.sampleForm.controls.lastName.value;
+
     if(this.isSaveMode){
-      let user = new User(name, address, phone, email, birthday, gender, balance, key);
+      let user = new User(traderId, firstName, lastName);
       this.hyperLedgerService.addUser(user);
     }
     if(this.isEditMode){
-      let user = new User(name, address, phone, email, birthday, gender, balance, key);
+      let user = new User(traderId, firstName, lastName);
       this.hyperLedgerService.updateUser(user);
     }
   }
-    removeEmployee(event, user){
-      this.hyperLedgerService.removeUser(user);
-    }
+
+  removeEmployee(event, user){
+    this.hyperLedgerService.removeUser(user);
+  }
 }
