@@ -3,6 +3,7 @@ export class User{
     firstName: Text;
     lastName: Text;
     balance: Number;
+    password: Text;
     
     constructor(traderId, firstName, lastName, balance){
         this.traderId = traderId;

@@ -1,0 +1,10 @@
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+      <input type="text" placeholder="firstName" ngModel name="firstName"/>
+      <input type="password" placeholder="password" ngModel name="password"/>
+      <input type="submit" [disabled]="!loginForm.valid" value="submit"/>
+      <p class="message">Not registered? <a routerLink="/register">Create an account</a></p>
+    </form>
+  </div>
+</div>
