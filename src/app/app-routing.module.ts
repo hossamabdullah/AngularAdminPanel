@@ -12,10 +12,10 @@ const appRoutes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterationComponent},
-    {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
-    {path: 'document', component: DocumentComponent, canActivate: [AuthenticationGuard]},
-    {path: 'employee', component: EmployeeComponent, canActivate: [AuthenticationGuard]},
-    {path: 'moderator', component: ModeratorComponent, canActivate: [AuthenticationGuard]}
+    {path: 'home', component: HomeComponent},
+    {path: 'document', component: DocumentComponent},
+    {path: 'employee', component: EmployeeComponent},
+    {path: 'moderator', component: ModeratorComponent}
 ];
 
 @NgModule({
