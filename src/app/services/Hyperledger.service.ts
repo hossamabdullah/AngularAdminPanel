@@ -12,6 +12,15 @@ export class HyperledgerService{
     a = 2;
     constructor(private http: Http){}
 
+    // authenticateUser(){
+    //     const file = new File([cardData], 'myCard.card', {type: 'application/octet-stream', lastModified: Date.now()});
+    //     const formData = new FormData();
+    //     formData.append('card', file);
+    //     const headers = new HttpHeaders();
+    //     headers.set('Content-Type', 'multipart/form-data');
+    //     return this.httpClient.post('http://localhost:3000/api/wallet/import', formData, {withCredentials: true, headers}).toPromise();
+    // }
+
     getUsers(){
         return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trader');
     }

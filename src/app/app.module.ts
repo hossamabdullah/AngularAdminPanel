@@ -13,7 +13,8 @@ import { DocumentComponent } from './document/document.component';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 import {AuthService} from './services/auth.service'
-import {AuthenticationGuard} from './guards/AuthenticationGuard'
+import {AuthenticationGuard} from './guards/AuthenticationGuard';
+import { FileUploadComponent } from './file-upload/file-upload.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {AuthenticationGuard} from './guards/AuthenticationGuard'
     ModeratorComponent,
     DocumentComponent,
     LoginComponent,
-    RegisterationComponent
+    RegisterationComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
