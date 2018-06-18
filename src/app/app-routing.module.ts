@@ -9,13 +9,14 @@ import { RegisterationComponent } from './registeration/registeration.component'
 import { AuthenticationGuard } from './guards/AuthenticationGuard';
 
 const appRoutes: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterationComponent},
-    {path: 'home', component: HomeComponent},
-    {path: 'document', component: DocumentComponent},
-    {path: 'employee', component: EmployeeComponent},
-    {path: 'moderator', component: ModeratorComponent}
+    {path: 'home', component: HomeComponent, children: [
+        {path: '', component: DocumentComponent},
+        {path: 'employee', component: EmployeeComponent},
+        {path: 'moderator', component: ModeratorComponent}
+    ]},
 ];
 
 @NgModule({
