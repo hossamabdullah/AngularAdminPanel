@@ -102,3 +102,12 @@ body {
 a{
   cursor: pointer;
 }
+
+.btn-github{
+  color: white;
+  background-color: black;
+}
+
+.btn-github img{
+  background-color: white;
+}
