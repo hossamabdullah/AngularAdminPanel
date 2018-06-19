@@ -31,6 +31,14 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  loadData(){
+    this.hyperLedgerService.getUsers().subscribe(
+      (response) => {
+        this.participants = response.json()
+      },(error) => console.log(error)
+    );
+  }
+
   enableEditEmployee(event, user){
     this.sampleForm.setValue({
       traderId: user.tradeId,
