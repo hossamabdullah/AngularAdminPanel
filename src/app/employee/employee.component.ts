@@ -77,7 +77,8 @@ export class EmployeeComponent implements OnInit {
       user.password = password;
       this.hyperLedgerService.addUser(user).subscribe(
         (response) => {
-          console.log(response)
+          console.log(response);
+          this.loadData();
         },(error) => {
           console.log(error)
         }
@@ -87,7 +88,10 @@ export class EmployeeComponent implements OnInit {
       let user = new User(null, firstName, lastName, balance);
       user.password = password
       this.hyperLedgerService.updateUser(traderId, user).subscribe(
-      (response)=>console.log(response),
+      (response)=>{
+        console.log(response);
+        this.loadData();
+      },
       (error)=>console.log(error)
       );
     }
@@ -97,6 +101,7 @@ export class EmployeeComponent implements OnInit {
     this.hyperLedgerService.removeUser(user).subscribe(
       (response) => {
         console.log(response)
+        this.loadData()
       },(error) => {
         console.log(error)
       }

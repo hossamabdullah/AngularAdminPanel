@@ -17,13 +17,22 @@ export class DocumentComponent implements OnInit {
   constructor(private hyperLedgerService: HyperledgerService) {}
 
   ngOnInit() {
-    this.assets = this.hyperLedgerService.getAssets();
+    this.loadData();
     this.sampleForm = new FormGroup({
       'tradingSymbol': new FormControl(),
       'name': new FormControl(),
       'description': new FormControl(),
       'value': new FormControl(),
+      'owner': new FormControl()
     });
+  }
+
+  loadData(){
+    this.hyperLedgerService.getAssets().subscribe(
+      (response) => {
+        this.assets = response.json()
+      },(error) => console.log(error)
+    );
   }
 
   enableSaveMode(){
@@ -31,7 +40,8 @@ export class DocumentComponent implements OnInit {
       tradingSymbol: '',
       value: '',
       name: '',
-      description: ''
+      description: '',
+      owner: ''
     });
     this.isSaveMode=true;
     this.isEditMode=false;
@@ -42,7 +52,8 @@ export class DocumentComponent implements OnInit {
       tradingSymbol: asset.tradingSymbol,
       value: asset.value,
       name: asset.name,
-      description: asset.description
+      description: asset.description,
+      owner: asset.owner
     });    
     this.isSaveMode=false;
     this.isEditMode=true;
@@ -53,15 +64,36 @@ export class DocumentComponent implements OnInit {
     let description = this.sampleForm.controls.description.value;
     let name = this.sampleForm.controls.name.value;
     let value = this.sampleForm.controls.value.value;
-    let asset= new Asset(tradingSymbol, name, description, value)
+    let owner = this.sampleForm.controls.owner.value;
+    owner = "resource:org.example.mynetwork.Trader#"+owner;
     if(this.isSaveMode){
-      this.hyperLedgerService.addAsset(asset);
+      let asset= new Asset(tradingSymbol, name, description, value, owner)
+      this.hyperLedgerService.addAsset(asset).subscribe(
+        (response) => {
+          console.log(response)
+          this.loadData()
+        },
+        (error) => console.log(error)
+      );
     }else{
-      this.hyperLedgerService.updateAsset(asset);
+      let asset= new Asset(null, name, description, value, owner)
+      this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
+        (response) => {
+          console.log(response)
+          this.loadData()
+        },
+        (error) => console.log(error)
+      );
     }
   }
 
   removeAsset(event, asset:Asset){
-    this.hyperLedgerService.removeAsset(asset);
+    this.hyperLedgerService.removeAsset(asset).subscribe(
+      (response) => {
+        console.log(response)
+        this.loadData()
+      },
+      (error) => console.log(error)
+    );
   }
 }

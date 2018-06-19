@@ -9,9 +9,13 @@ import { Http } from '@angular/http';
 export class HyperledgerService{
     users: User[];
     assets: Asset[];
+    verified: boolean=false;
     a = 2;
     constructor(private http: Http){}
-
+    
+    verify(){
+        this.verified = true;
+    }
     // authenticateUser(){
     //     const file = new File([cardData], 'myCard.card', {type: 'application/octet-stream', lastModified: Date.now()});
     //     const formData = new FormData();
@@ -44,27 +48,28 @@ export class HyperledgerService{
     ////////////////////////////////////////////////
     ///////////   Asset  Functions   ///////////////
     ////////////////////////////////////////////////
-    getAssets(): Asset[]{
-        //TODO call webservice to get assets
-        let asset1 = new Asset("id1", "aa", "aa", 111);
-        let asset2 = new Asset("id2", "aa", "aa", 222);
-        let asset3 = new Asset("id3", "aa", "aa", 333);
-        let asset4 = new Asset("id4", "aa", "aa", 444);
-        let asset5 = new Asset("id5", "aa", "aa", 555);
-        this.assets = [asset1, asset2, asset3, asset4, asset5];
-        return this.assets;
+    getAssets(){
+        console.log("/retrieving the data of traders");
+        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Commodity',{withCredentials: true});
+        // let asset1 = new Asset("id1", "aa", "aa", 111);
+        // let asset2 = new Asset("id2", "aa", "aa", 222);
+        // let asset3 = new Asset("id3", "aa", "aa", 333);
+        // let asset4 = new Asset("id4", "aa", "aa", 444);
+        // let asset5 = new Asset("id5", "aa", "aa", 555);
+        // this.assets = [asset1, asset2, asset3, asset4, asset5];
+        // return this.assets;
     }
 
-    updateAsset(asset: Asset){
-        //TODO update asset
+    updateAsset(tradingSymbol: String, asset: Asset){
+        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Commodity/'+tradingSymbol, asset,{withCredentials: true});
     }
 
 
     addAsset(asset: Asset){
-        //TODO update asset
+        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Commodity', asset, {withCredentials: true});
     }
 
     removeAsset(asset: Asset){
-        //TODO delete asset
+        return this.http.delete('http://localhost:3000/api/org.example.mynetwork.Commodity/'+asset.tradingSymbol, {withCredentials: true});
     }
 }

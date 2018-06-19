@@ -1,5 +1,8 @@
 <button type="button" class="btn" id="title">
     Assets
+</button>&nbsp;
+<button type="button" class="btn" id="title" (click)="loadData()">
+    load data
 </button>
 <button type="button" class="btn btn-primary" id="add-btn" data-toggle="modal" data-target="#assetmodal" (click)="enableSaveMode()"> 
     Add Asset
@@ -51,6 +54,8 @@
                     <input class="form-control form-control-sm" type="text" formControlName="description" placeholder="type"/>
                     value
                     <input class="form-control form-control-sm" type="text" formControlName="value" placeholder="type"/>
+                    owner
+                    <input class="form-control form-control-sm" type="text" formControlName="owner" placeholder="owner id"/>
             </div>
         
             <!-- Modal footer -->
