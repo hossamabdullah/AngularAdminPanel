@@ -41,7 +41,7 @@ export class EmployeeComponent implements OnInit {
 
   enableEditEmployee(event, user){
     this.sampleForm.setValue({
-      traderId: user.tradeId,
+      traderId: user.traderId,
       firstName: user.firstName,
       lastName: user.lastName,
       balance: '123'
