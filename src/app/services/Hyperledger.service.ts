@@ -22,21 +22,22 @@ export class HyperledgerService{
     // }
 
     getUsers(){
-        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trader');
+        console.log("/retrieving the data of traders");
+        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trader',{withCredentials: true});
     }
 
     updateUser(user: User){
         console.log("updating user: "+user);
-        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId, user);
+        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId, user,{withCredentials: true});
     }
 
     addUser(user: User){
-        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Trader', user);
+        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Trader', user ,{withCredentials: true});
     }
 
     removeUser(user: User){
         console.log("removing user: "+user);
-        return this.http.delete('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId);
+        return this.http.delete('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId ,{withCredentials: true});
     }
 
     ////////////////////////////////////////////////
