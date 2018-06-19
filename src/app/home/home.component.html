@@ -1,4 +1,4 @@
-<body ng-app="myApp">
+
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand -->
         <a class="navbar-brand" routerLink="home">MyDocChain</a>
@@ -15,7 +15,7 @@
                     Assets
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" routerLink="document">Document</a>
+                    <a class="dropdown-item" routerLink="/home">Document</a>
                 </div>
             </li>
 
@@ -31,7 +31,8 @@
             </li>
         </ul>
     </nav>
-
+    To be able to sign transaction you make please upload your business network card<br/>
     <file-upload></file-upload>
+    <br/>
+    <hr/>
     <router-outlet></router-outlet>
-</body>

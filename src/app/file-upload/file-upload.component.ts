@@ -15,6 +15,7 @@ export class FileUploadComponent {
     @Input() multiple: boolean = false;
 
     upload() {
+        console.log("uploading...")
         let inputEl = this.el.nativeElement.firstElementChild;
         if (inputEl.files.length == 0) return;
 
@@ -31,6 +32,7 @@ export class FileUploadComponent {
             .subscribe(
               res =>{
                 console.log(res);
+                alert("thanks for uploading the business network card, now you can sign execute and sign your transactions")
               },
               err => {
                 console.log("error message");

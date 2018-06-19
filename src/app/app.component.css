@@ -11,3 +11,12 @@
 .clearDiv{
     clear: both;
 }
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.full-height{
+    height: 100%;
+}

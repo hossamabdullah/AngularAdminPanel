@@ -111,3 +111,16 @@ a{
 .btn-github img{
   background-color: white;
 }
+
+.bg {
+  /* The image used */
+  background:linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("../../assets/img/bg.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
