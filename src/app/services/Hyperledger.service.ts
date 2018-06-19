@@ -26,12 +26,13 @@ export class HyperledgerService{
         return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trader',{withCredentials: true});
     }
 
-    updateUser(user: User){
+    updateUser(traderId: String, user: User){
         console.log("updating user: "+user);
-        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId, user,{withCredentials: true});
+        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Trader/'+traderId, user,{withCredentials: true});
     }
 
     addUser(user: User){
+        console.log("adding new user: "+ user);
         return this.http.post('http://localhost:3000/api/org.example.mynetwork.Trader', user ,{withCredentials: true});
     }
 

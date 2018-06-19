@@ -27,7 +27,8 @@ export class EmployeeComponent implements OnInit {
       'traderId': new FormControl(),
       'firstName': new FormControl(),
       'lastName': new FormControl(),
-      'balance': new FormControl()
+      'balance': new FormControl(),
+      'password': new FormControl()
     });
   }
 
@@ -44,7 +45,8 @@ export class EmployeeComponent implements OnInit {
       traderId: user.traderId,
       firstName: user.firstName,
       lastName: user.lastName,
-      balance: '123'
+      balance: user.balance,
+      password: user.password
     });
     this.isSaveMode=false;
     this.isEditMode=true;
@@ -56,7 +58,8 @@ export class EmployeeComponent implements OnInit {
       traderId: "",
       firstName: "",
       lastName: "",
-      balance: ""
+      balance: "",
+      password: ""
     });
     this.isSaveMode=true;
     this.isEditMode=false;
@@ -68,13 +71,22 @@ export class EmployeeComponent implements OnInit {
     let firstName = this.sampleForm.controls.firstName.value;
     let lastName = this.sampleForm.controls.lastName.value;
     let balance = this.sampleForm.controls.balance.value;
+    let password = this.sampleForm.controls.password.value;
     if(this.isSaveMode){
       let user = new User(traderId, firstName, lastName, balance);
-      this.hyperLedgerService.addUser(user);
+      user.password = password;
+      this.hyperLedgerService.addUser(user).subscribe(
+        (response) => {
+          console.log(response)
+        },(error) => {
+          console.log(error)
+        }
+      );
     }
     if(this.isEditMode){
-      let user = new User(traderId, firstName, lastName, balance);
-      this.hyperLedgerService.updateUser(user).subscribe(
+      let user = new User(null, firstName, lastName, balance);
+      user.password = password
+      this.hyperLedgerService.updateUser(traderId, user).subscribe(
       (response)=>console.log(response),
       (error)=>console.log(error)
       );
@@ -82,6 +94,12 @@ export class EmployeeComponent implements OnInit {
   }
 
   removeEmployee(event, user){
-    this.hyperLedgerService.removeUser(user);
+    this.hyperLedgerService.removeUser(user).subscribe(
+      (response) => {
+        console.log(response)
+      },(error) => {
+        console.log(error)
+      }
+    );
   }
 }
