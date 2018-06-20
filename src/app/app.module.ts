@@ -14,7 +14,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 import {AuthService} from './services/auth.service'
 import {AuthenticationGuard} from './guards/AuthenticationGuard';
-import { FileUploadComponent } from './file-upload/file-upload.component'
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { DashboardComponent } from './dashboard/dashboard.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component'
     DocumentComponent,
     LoginComponent,
     RegisterationComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

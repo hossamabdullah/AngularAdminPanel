@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { User } from '../types/user.model';
 import { Asset } from '../types/asset.model';
 import { Http } from '@angular/http';
+import { AssetTransfer } from '../types/assetTransfer.model';
 
 @Injectable({
     providedIn: 'root'
@@ -51,13 +52,6 @@ export class HyperledgerService{
     getAssets(){
         console.log("/retrieving the data of traders");
         return this.http.get('http://localhost:3000/api/org.example.mynetwork.Commodity',{withCredentials: true});
-        // let asset1 = new Asset("id1", "aa", "aa", 111);
-        // let asset2 = new Asset("id2", "aa", "aa", 222);
-        // let asset3 = new Asset("id3", "aa", "aa", 333);
-        // let asset4 = new Asset("id4", "aa", "aa", 444);
-        // let asset5 = new Asset("id5", "aa", "aa", 555);
-        // this.assets = [asset1, asset2, asset3, asset4, asset5];
-        // return this.assets;
     }
 
     updateAsset(tradingSymbol: String, asset: Asset){
@@ -72,4 +66,16 @@ export class HyperledgerService{
     removeAsset(asset: Asset){
         return this.http.delete('http://localhost:3000/api/org.example.mynetwork.Commodity/'+asset.tradingSymbol, {withCredentials: true});
     }
+
+
+
+    getAssetTransfer(){
+        console.log("/retrieving the data of traders");
+        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trade',{withCredentials: true});
+    }
+
+    addAssetTransfer(transaction: AssetTransfer){
+        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Trade', transaction, {withCredentials: true});
+    }
+
 }

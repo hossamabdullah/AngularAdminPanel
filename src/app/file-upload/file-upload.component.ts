@@ -3,15 +3,17 @@
  */
 import { Component, ElementRef, Input } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { HyperledgerService } from '../services/Hyperledger.service';
 @Component({
     selector: 'file-upload',
     template: '<input type="file" [attr.multiple]="multiple ? true : null" (change)="upload()" >'
 })
 export class FileUploadComponent {
     constructor(private http: Http,
-                private el: ElementRef
+                private el: ElementRef,
+                private hyperledgerService: HyperledgerService
     ) {}
-
+    
     @Input() multiple: boolean = false;
 
     upload() {
@@ -33,12 +35,15 @@ export class FileUploadComponent {
               res =>{
                 console.log(res);
                 alert("thanks for uploading the business network card, now you can sign execute and sign your transactions")
+                this.hyperledgerService.verify()
               },
               err => {
                 console.log("error message");
                 console.log(err);
               }
             );
+
+        
 
     }
 }

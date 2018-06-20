@@ -11,12 +11,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private hyperLedgerService: HyperledgerService) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   isAuthenticated(){
     this.authenticated = this.hyperLedgerService.verified
   }
-
 }
