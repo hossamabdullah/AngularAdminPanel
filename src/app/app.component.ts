@@ -7,6 +7,4 @@ import { Component, Renderer2 } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-
-  
 }
