@@ -2,10 +2,10 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-app.use('/', express.static(__dirname + '/dist'));
+app.use('/', express.static(__dirname + '/dist/AngularAdminPanel'));
 
 app.get('/*', function (req, res) {
-	res.sendFile(path.join(__dirname + '/dist', 'index.html'))
+	res.sendFile(path.join(__dirname + '/dist/AngularAdminPanel', 'index.html'))
 });
 
 app.use(function (req, res, next) {
