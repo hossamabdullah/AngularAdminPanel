@@ -23,27 +23,27 @@ export class HyperledgerService{
     //     formData.append('card', file);
     //     const headers = new HttpHeaders();
     //     headers.set('Content-Type', 'multipart/form-data');
-    //     return this.httpClient.post('http://localhost:3000/api/wallet/import', formData, {withCredentials: true, headers}).toPromise();
+    //     return this.httpClient.post('http://173.193.79.254:31090/api/wallet/import', formData, {withCredentials: true, headers}).toPromise();
     // }
 
     getUsers(){
         console.log("/retrieving the data of traders");
-        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trader',{withCredentials: true});
+        return this.http.get('http://173.193.79.254:31090/api/org.example.mynetwork.Trader',{withCredentials: true});
     }
 
     updateUser(traderId: String, user: User){
         console.log("updating user: "+user);
-        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Trader/'+traderId, user,{withCredentials: true});
+        return this.http.put('http://173.193.79.254:31090/api/org.example.mynetwork.Trader/'+traderId, user,{withCredentials: true});
     }
 
     addUser(user: User){
         console.log("adding new user: "+ user);
-        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Trader', user ,{withCredentials: true});
+        return this.http.post('http://173.193.79.254:31090/api/org.example.mynetwork.Trader', user ,{withCredentials: true});
     }
 
     removeUser(user: User){
         console.log("removing user: "+user);
-        return this.http.delete('http://localhost:3000/api/org.example.mynetwork.Trader/'+user.traderId ,{withCredentials: true});
+        return this.http.delete('http://173.193.79.254:31090/api/org.example.mynetwork.Trader/'+user.traderId ,{withCredentials: true});
     }
 
     ////////////////////////////////////////////////
@@ -51,31 +51,31 @@ export class HyperledgerService{
     ////////////////////////////////////////////////
     getAssets(){
         console.log("/retrieving the data of traders");
-        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Commodity',{withCredentials: true});
+        return this.http.get('http://173.193.79.254:31090/api/org.example.mynetwork.Commodity',{withCredentials: true});
     }
 
     updateAsset(tradingSymbol: String, asset: Asset){
-        return this.http.put('http://localhost:3000/api/org.example.mynetwork.Commodity/'+tradingSymbol, asset,{withCredentials: true});
+        return this.http.put('http://173.193.79.254:31090/api/org.example.mynetwork.Commodity/'+tradingSymbol, asset,{withCredentials: true});
     }
 
 
     addAsset(asset: Asset){
-        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Commodity', asset, {withCredentials: true});
+        return this.http.post('http://173.193.79.254:31090/api/org.example.mynetwork.Commodity', asset, {withCredentials: true});
     }
 
     removeAsset(asset: Asset){
-        return this.http.delete('http://localhost:3000/api/org.example.mynetwork.Commodity/'+asset.tradingSymbol, {withCredentials: true});
+        return this.http.delete('http://173.193.79.254:31090/api/org.example.mynetwork.Commodity/'+asset.tradingSymbol, {withCredentials: true});
     }
 
 
 
     getAssetTransfer(){
         console.log("/retrieving the data of traders");
-        return this.http.get('http://localhost:3000/api/org.example.mynetwork.Trade',{withCredentials: true});
+        return this.http.get('http://173.193.79.254:31090/api/org.example.mynetwork.Trade',{withCredentials: true});
     }
 
     addAssetTransfer(transaction: AssetTransfer){
-        return this.http.post('http://localhost:3000/api/org.example.mynetwork.Trade', transaction, {withCredentials: true});
+        return this.http.post('http://173.193.79.254:31090/api/org.example.mynetwork.Trade', transaction, {withCredentials: true});
     }
 
 }

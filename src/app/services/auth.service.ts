@@ -2,13 +2,14 @@ import {User} from '../types/user.model'
 import { Injectable } from '@angular/core';
 import{Router} from '@angular/router';
 import { FirebaseService } from './firebase.service';
+import { HyperledgerService } from './Hyperledger.service';
 
 @Injectable()
 export class AuthService{
     loggedIn = false;
     registeredUser: User;
 
-    constructor(private router: Router, private firebaseService: FirebaseService){}
+    constructor(private router: Router, private firebaseService: FirebaseService, private hyperledgerService: HyperledgerService){}
 
     isAuthenticated(){
       const promise = new Promise(
@@ -39,6 +40,10 @@ export class AuthService{
       if(typeof user === 'undefined')
         return
       this.firebaseService.add_user(user).subscribe(
+        (response) => {console.log(response)},
+        (error) => {console.log(error)}
+      )
+      this.hyperledgerService.addUser(user).subscribe(
         (response) => {console.log(response)},
         (error) => {console.log(error)}
       )

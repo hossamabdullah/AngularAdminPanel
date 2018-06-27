@@ -30,7 +30,7 @@ export class FileUploadComponent {
         // headers.set('Content-Type', 'multipart/form-data');
 
         this.http
-            .post('http://localhost:3000/api/wallet/import', formData, {withCredentials: true})
+            .post('http://173.193.79.254:31090/api/wallet/import', formData, {withCredentials: true})
             .subscribe(
               res =>{
                 console.log(res);
