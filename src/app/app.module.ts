@@ -16,9 +16,6 @@ import {AuthService} from './services/auth.service'
 import {AuthenticationGuard} from './guards/AuthenticationGuard';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DashboardComponent } from './dashboard/dashboard.component'
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment, firebaseConfig } from '../environments/environment';
 
 
 @NgModule({
@@ -38,9 +35,7 @@ import { environment, firebaseConfig } from '../environments/environment';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpModule,
-    FormsModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    FormsModule
   ],
   providers: [
     AuthService,
