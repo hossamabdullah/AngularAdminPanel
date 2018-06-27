@@ -1,13 +1,14 @@
 import {User} from '../types/user.model'
 import { Injectable } from '@angular/core';
 import{Router} from '@angular/router';
+import { FirebaseService } from './firebase.service';
 
 @Injectable()
 export class AuthService{
     loggedIn = false;
     registeredUser: User;
 
-    constructor(private router: Router){}
+    constructor(private router: Router, private firebaseService: FirebaseService){}
 
     isAuthenticated(){
       const promise = new Promise(
@@ -37,7 +38,10 @@ export class AuthService{
     register(user: User){
       if(typeof user === 'undefined')
         return
-      
+      this.firebaseService.add_user(user).subscribe(
+        (response) => {console.log(response)},
+        (error) => {console.log(error)}
+      )
       this.registeredUser = user
       this.router.navigate(['/login'])
     }
