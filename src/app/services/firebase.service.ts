@@ -6,7 +6,6 @@ import { Http } from '@angular/http';
     providedIn: 'root'
 })
 export class FirebaseService{
-    private basePath = '/shares';
     public items: any;
     public item: any;
 
