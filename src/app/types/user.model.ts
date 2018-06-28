@@ -1,9 +1,9 @@
 export class User{
-    traderId: Text;
-    firstName: Text;
-    lastName: Text;
+    traderId: String;
+    firstName: String;
+    lastName: String;
     balance: Number;
-    password: Text;
+    password: String;
     
     constructor(traderId, firstName, lastName, balance){
         this.traderId = traderId;

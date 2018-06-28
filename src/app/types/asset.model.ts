@@ -1,9 +1,9 @@
 export class Asset{
-    tradingSymbol: Text;
-    name: Text;
-    description: Text;
+    tradingSymbol: String;
+    name: String;
+    description: String;
     value: Number;
-    owner: Text;
+    owner: String;
 
     constructor(tradingSymbol, name, description, value, owner){
         this.tradingSymbol = tradingSymbol;
