@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterationComponent},
-    {path: 'home', component: HomeComponent, children: [
+    {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard], children: [
         {path: '', component: ProfileComponent},
         {path: 'dashboard', component: DashboardComponent},
         {path: 'asset', component: DocumentComponent},
