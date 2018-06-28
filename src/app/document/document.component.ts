@@ -31,6 +31,11 @@ export class DocumentComponent implements OnInit {
     this.hyperLedgerService.getAssets().subscribe(
       (response) => {
         this.assets = response.json()
+        this.assets.map(
+          value => {
+            value.owner = value.owner.substring(37);
+          }
+        )
       },(error) => console.log(error)
     );
   }
@@ -66,8 +71,8 @@ export class DocumentComponent implements OnInit {
     let name = this.sampleForm.controls.name.value;
     let value = this.sampleForm.controls.value.value;
     let owner = this.sampleForm.controls.owner.value;
-    owner = "resource:org.example.mynetwork.Trader#"+owner;
     if(this.isSaveMode){
+      owner = "resource:org.example.mynetwork.Trader#"+owner;
       let asset= new Asset(tradingSymbol, name, description, value, owner)
       this.hyperLedgerService.addAsset(asset).subscribe(
         (response) => {
@@ -77,6 +82,7 @@ export class DocumentComponent implements OnInit {
         (error) => console.log(error)
       );
     }else{
+      owner = "resource:org.example.mynetwork.Trader#"+owner.substring(1);
       let asset= new Asset(null, name, description, value, owner)
       this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
         (response) => {

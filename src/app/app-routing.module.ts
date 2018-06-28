@@ -8,12 +8,15 @@ import { LoginComponent } from './login/login.component';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { AuthenticationGuard } from './guards/AuthenticationGuard';
 import { DashboardComponent } from './dashboard/dashboard.component'
+import { ProfileComponent } from './profile/profile.component'
+
 const appRoutes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterationComponent},
     {path: 'home', component: HomeComponent, children: [
-        {path: '', component: DashboardComponent},
+        {path: '', component: ProfileComponent},
+        {path: 'dashboard', component: DashboardComponent}
         {path: 'asset', component: DocumentComponent},
         {path: 'employee', component: EmployeeComponent},
         {path: 'moderator', component: ModeratorComponent}

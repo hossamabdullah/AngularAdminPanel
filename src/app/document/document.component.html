@@ -15,6 +15,7 @@
               <th>name</th>
               <th>description</th>
               <th>price</th>
+              <th>owner</th>
               <th></th>
           </tr>
       </thead>
@@ -24,6 +25,7 @@
                 <td>{{asset.name}}</td>
                 <td>{{asset.description}}</td>
                 <td>{{asset.value}}</td>
+                <td>{{asset.owner}}</td>
                 <td>
                     <button type="button" class="btn btn-warning" (click)="enableEditAsset($event, asset)" data-toggle="modal" data-target="#assetmodal">Edit</button>
                     <button type="button" class="btn btn-danger" (click)="removeAsset($event, asset)">x</button>

@@ -15,7 +15,8 @@ import { FormsModule }   from '@angular/forms';
 import {AuthService} from './services/auth.service'
 import {AuthenticationGuard} from './guards/AuthenticationGuard';
 import { FileUploadComponent } from './file-upload/file-upload.component';
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component'
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DashboardComponent } from './dashboard/dashboard.component'
     LoginComponent,
     RegisterationComponent,
     FileUploadComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
