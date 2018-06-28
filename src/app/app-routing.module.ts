@@ -16,7 +16,7 @@ const appRoutes: Routes = [
     {path: 'register', component: RegisterationComponent},
     {path: 'home', component: HomeComponent, children: [
         {path: '', component: ProfileComponent},
-        {path: 'dashboard', component: DashboardComponent}
+        {path: 'dashboard', component: DashboardComponent},
         {path: 'asset', component: DocumentComponent},
         {path: 'employee', component: EmployeeComponent},
         {path: 'moderator', component: ModeratorComponent}
