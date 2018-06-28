@@ -27,17 +27,14 @@ export class HyperledgerService {
     // }
 
     getUsers() {
-        console.log("/retrieving the data of traders");
         return this.http.get('http://173.193.79.254:31090/api/Trader');
     }
 
     updateUser(traderId: String, user: User) {
-        console.log("updating user: " + user);
         return this.http.put('http://173.193.79.254:31090/api/Trader/' + traderId, user, );
     }
 
     addUser(user: User) {
-        console.log("adding new user: " + user);
         this.firebaseService.add_user(user).subscribe(
             response => console.log(response),
             error => console.log(error)
@@ -46,7 +43,6 @@ export class HyperledgerService {
     }
 
     removeUser(user: User) {
-        console.log("removing user: " + user);
         return this.http.delete('http://173.193.79.254:31090/api/Trader/' + user.traderId);
     }
 
@@ -54,7 +50,6 @@ export class HyperledgerService {
     ///////////   Asset  Functions   ///////////////
     ////////////////////////////////////////////////
     getAssets() {
-        console.log("/retrieving the data of traders");
         return this.http.get('http://173.193.79.254:31090/api/Commodity');
     }
 
@@ -74,7 +69,6 @@ export class HyperledgerService {
 
 
     getAssetTransfer() {
-        console.log("/retrieving the data of traders");
         return this.http.get('http://173.193.79.254:31090/api/Trade');
     }
 

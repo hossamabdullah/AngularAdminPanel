@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit {
     .subscribe(
       (response) => {
         this.transactions = response.json()
-        console.log(this.transactions)
         this.transactions.map(
           value => {
             value.newOwner = value.newOwner.substring(37);
@@ -46,10 +45,9 @@ export class DashboardComponent implements OnInit {
 
     let transaction= new AssetTransfer(assetId, ownerId, null, null);
 
-    console.log(transaction)
+    
     this.hyperLedgerService.addAssetTransfer(transaction).subscribe(
       (response) => {
-        console.log(response)
         this.loadData()
       },
       (error) => console.log(error)

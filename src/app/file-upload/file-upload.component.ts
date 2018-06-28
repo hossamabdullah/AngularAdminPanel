@@ -17,7 +17,6 @@ export class FileUploadComponent {
     @Input() multiple: boolean = false;
 
     upload() {
-        console.log("uploading...")
         let inputEl = this.el.nativeElement.firstElementChild;
         if (inputEl.files.length == 0) return;
 
@@ -38,7 +37,6 @@ export class FileUploadComponent {
                 this.hyperledgerService.verify()
               },
               err => {
-                console.log("error message");
                 console.log(err);
               }
             );

@@ -76,7 +76,6 @@ export class DocumentComponent implements OnInit {
       let asset= new Asset(tradingSymbol, name, description, value, owner)
       this.hyperLedgerService.addAsset(asset).subscribe(
         (response) => {
-          console.log(response)
           this.loadData()
         },
         (error) => console.log(error)
@@ -86,7 +85,6 @@ export class DocumentComponent implements OnInit {
       let asset= new Asset(null, name, description, value, owner)
       this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
         (response) => {
-          console.log(response)
           this.loadData()
         },
         (error) => console.log(error)
@@ -97,7 +95,6 @@ export class DocumentComponent implements OnInit {
   removeAsset(event, asset:Asset){
     this.hyperLedgerService.removeAsset(asset).subscribe(
       (response) => {
-        console.log(response)
         this.loadData()
       },
       (error) => console.log(error)

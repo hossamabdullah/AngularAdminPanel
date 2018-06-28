@@ -62,7 +62,6 @@ export class EmployeeComponent implements OnInit {
     });
     this.isSaveMode=true;
     this.isEditMode=false;
-    console.log("isSaveMode : "+ this.isSaveMode)
   }
   
   save() {
@@ -76,7 +75,6 @@ export class EmployeeComponent implements OnInit {
       user.password = password;
       this.hyperLedgerService.addUser(user).subscribe(
         (response) => {
-          console.log(response);
           this.loadData();
         },(error) => {
           console.log(error)
@@ -88,7 +86,6 @@ export class EmployeeComponent implements OnInit {
       user.password = password
       this.hyperLedgerService.updateUser(traderId, user).subscribe(
       (response)=>{
-        console.log(response);
         this.loadData();
       },
       (error)=>console.log(error)

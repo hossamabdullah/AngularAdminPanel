@@ -33,7 +33,6 @@ export class ProfileComponent implements OnInit {
       (response) => {
         this.assets = response.json() as Asset[]
         this.assets.forEach((asset, index, object)=>{
-          console.log(asset.owner.substring(38)+", "+ this.authService.getUser().traderId)
           if(asset.owner.substring(38) != this.authService.getUser().traderId)
               object.splice(index,1);
         })
@@ -82,7 +81,6 @@ export class ProfileComponent implements OnInit {
       let asset= new Asset(tradingSymbol, name, description, value, owner)
       this.hyperLedgerService.addAsset(asset).subscribe(
         (response) => {
-          console.log(response)
           this.loadData()
         },
         (error) => console.log(error)
@@ -92,7 +90,6 @@ export class ProfileComponent implements OnInit {
       let asset= new Asset(null, name, description, value, owner)
       this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
         (response) => {
-          console.log(response)
           this.loadData()
         },
         (error) => console.log(error)
@@ -103,7 +100,6 @@ export class ProfileComponent implements OnInit {
   removeAsset(event, asset:Asset){
     this.hyperLedgerService.removeAsset(asset).subscribe(
       (response) => {
-        console.log(response)
         this.loadData()
       },
       (error) => console.log(error)

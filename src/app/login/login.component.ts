@@ -9,15 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   @ViewChild('loginForm') loginForm;
 
   constructor(private authService: AuthService, private router: Router) { }
-
-  ngOnInit() {
-    console.log("insied login component")
-  }
 
   login(){
     var firstName = this.loginForm.form.controls.firstName.value
