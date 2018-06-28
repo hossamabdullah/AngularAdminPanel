@@ -3,7 +3,7 @@ import { User } from '../types/user.model';
 import { Asset } from '../types/asset.model';
 import { Http, Headers } from '@angular/http';
 import { AssetTransfer } from '../types/assetTransfer.model';
-
+import { FirebaseService } from './firebase.service';
 @Injectable({
     providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class HyperledgerService {
     assets: Asset[];
     verified: boolean = false;
     a = 2;
-    constructor(private http: Http) { }
+    constructor(private http: Http, private firebaseService: FirebaseService) { }
 
     verify() {
         this.verified = true;
@@ -38,6 +38,10 @@ export class HyperledgerService {
 
     addUser(user: User) {
         console.log("adding new user: " + user);
+        this.firebaseService.add_user(user).subscribe(
+            response => console.log(response),
+            error => console.log(error)
+        );
         return this.http.post('http://173.193.79.254:31090/api/Trader', user);
     }
 
