@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
         console.log(this.transactions)
         this.transactions.map(
           value => {
-            value.newOwner = value.newOwner.substring(35);
+            value.newOwner = value.newOwner.substring(37);
             value.commodity = value.commodity.substring(40);
           }
         )

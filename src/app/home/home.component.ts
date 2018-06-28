@@ -15,5 +15,6 @@ export class HomeComponent implements OnInit {
 
   isAuthenticated(){
     this.authenticated = this.hyperLedgerService.verified
+    return true;
   }
 }
