@@ -14,7 +14,11 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="employee" role="button">Users</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="#" (click)="logout()" role="button">logout</a>
+            </li>
         </ul>
+        
     </nav>
     <div [hidden]="isAuthenticated()">
         To be able to sign transaction you make please upload your business network card<br/>

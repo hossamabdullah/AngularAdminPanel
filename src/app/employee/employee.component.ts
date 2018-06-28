@@ -96,7 +96,6 @@ export class EmployeeComponent implements OnInit {
   removeEmployee(event, user){
     this.hyperLedgerService.removeUser(user).subscribe(
       (response) => {
-        console.log(response)
         this.loadData()
       },(error) => {
         console.log(error)

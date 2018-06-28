@@ -39,8 +39,9 @@ export class AuthService {
     )
   }
 
-  logout(user: User) {
+  logout() {
     this.loggedIn = false;
+    this.router.navigate(['/login']);
   }
 
   register(user: User) {
