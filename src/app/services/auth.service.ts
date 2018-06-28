@@ -27,11 +27,12 @@ export class AuthService {
         for (let id in users) {
           if (user.firstName == users[id].firstName && user.password == users[id].password) {
             this.loggedIn = true
+            this.registeredUser = users[id];
             this.router.navigate(['/home'])
-          } else {
-            this.router.navigate(['/register'])
+            return;
           }
         }
+        this.router.navigate(['/register'])
       }, (error) => {
         console.log(error)
       }

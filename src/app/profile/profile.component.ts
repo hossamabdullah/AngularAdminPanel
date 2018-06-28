@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Asset } from '../types/asset.model';
+import { HyperledgerService } from '../services/Hyperledger.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +10,103 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  assets: Asset[];
+  sampleForm;
+  isSaveMode=true;
+  isEditMode=false;
 
-  constructor() { }
+  constructor(private hyperLedgerService: HyperledgerService, private authService: AuthService) {}
 
   ngOnInit() {
+    this.loadData();
+    this.sampleForm = new FormGroup({
+      'tradingSymbol': new FormControl(),
+      'name': new FormControl(),
+      'description': new FormControl(),
+      'value': new FormControl(),
+      'owner': new FormControl()
+    });
   }
 
+  loadData(){
+    this.hyperLedgerService.getAssets().subscribe(
+      (response) => {
+        this.assets = response.json() as Asset[]
+        this.assets.forEach((asset, index, object)=>{
+          console.log(asset.owner.substring(38)+", "+ this.authService.getUser().traderId)
+          if(asset.owner.substring(38) != this.authService.getUser().traderId)
+              object.splice(index,1);
+        })
+        this.assets.map(
+          value => {
+            value.owner = value.owner.substring(37);
+          }
+        )
+      },(error) => console.log(error)
+    );
+  }
+
+  enableSaveMode(){
+    this.sampleForm.setValue({
+      tradingSymbol: '',
+      value: '',
+      name: '',
+      description: '',
+      owner: ''
+    });
+    this.isSaveMode=true;
+    this.isEditMode=false;
+  }
+
+  enableEditAsset(event, asset:Asset){
+    this.sampleForm.setValue({
+      tradingSymbol: asset.tradingSymbol,
+      value: asset.value,
+      name: asset.name,
+      description: asset.description,
+      owner: asset.owner
+    });    
+    this.isSaveMode=false;
+    this.isEditMode=true;
+  }
+
+
+  save(){
+    let tradingSymbol = this.sampleForm.controls.tradingSymbol.value;
+    let description = this.sampleForm.controls.description.value;
+    let name = this.sampleForm.controls.name.value;
+    let value = this.sampleForm.controls.value.value;
+    let owner = this.sampleForm.controls.owner.value;
+    if(this.isSaveMode){
+      owner = "resource:org.example.mynetwork.Trader#"+owner;
+      let asset= new Asset(tradingSymbol, name, description, value, owner)
+      this.hyperLedgerService.addAsset(asset).subscribe(
+        (response) => {
+          console.log(response)
+          this.loadData()
+        },
+        (error) => console.log(error)
+      );
+    }else{
+      owner = "resource:org.example.mynetwork.Trader#"+owner.substring(1);
+      let asset= new Asset(null, name, description, value, owner)
+      this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
+        (response) => {
+          console.log(response)
+          this.loadData()
+        },
+        (error) => console.log(error)
+      );
+    }
+  }
+
+  removeAsset(event, asset:Asset){
+    this.hyperLedgerService.removeAsset(asset).subscribe(
+      (response) => {
+        console.log(response)
+        this.loadData()
+      },
+      (error) => console.log(error)
+    );
+  }
 }
