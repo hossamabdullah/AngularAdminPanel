@@ -1,5 +1,5 @@
 <button type="button" class="btn" id="title">
-  Assets
+  Transactions
 </button>&nbsp;
 <button type="button" class="btn" id="title" (click)="loadData()">
   load data
@@ -19,8 +19,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let tx of transactions">
-              <td>{{tx.assetId}}</td>
-              <td>{{tx.ownerId}}</td>
+              <td>{{tx.commodity}}</td>
+              <td>{{tx.newOwner}}</td>
               <td>{{tx.transactionId}}</td>
               <td>{{tx.timestamp}}</td>
         </tr>

@@ -22,9 +22,17 @@ export class DashboardComponent implements OnInit {
   }
 
   loadData(){
-    this.hyperLedgerService.getAssetTransfer().subscribe(
+    this.hyperLedgerService.getAssetTransfer()
+    .subscribe(
       (response) => {
         this.transactions = response.json()
+        console.log(this.transactions)
+        this.transactions.map(
+          value => {
+            value.newOwner = value.newOwner.substring(35);
+            value.commodity = value.commodity.substring(40);
+          }
+        )
       },(error) => console.log(error)
     );
   }

@@ -21,17 +21,11 @@ export class AuthService {
   }
 
   login(user: User) {
-    console.log('starting!')
     this.firebaseService.get_users().subscribe(
       (response) => {
-        console.log('things gone right!') 
-        console.log(response)
         let users: User[] = response.json();
-        console.log(users)
         for (let id in users) {
-          console.log('checking users!')
           if (user.firstName == users[id].firstName && user.password == users[id].password) {
-            console.log('User found !')
             this.loggedIn = true
             this.router.navigate(['/home'])
           } else {

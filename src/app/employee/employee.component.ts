@@ -33,10 +33,9 @@ export class EmployeeComponent implements OnInit {
   }
 
   loadData(){
-    this.hyperLedgerService.getUsers().subscribe(
-      (response) => {
-        this.participants = response.json()
-      },(error) => console.log(error)
+    this.hyperLedgerService.getUsers().subscribe( 
+      response => {this.participants = response.json()},
+      error => console.log(error)
     );
   }
 
