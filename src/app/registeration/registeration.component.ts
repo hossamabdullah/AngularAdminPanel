@@ -17,7 +17,7 @@ export class RegisterationComponent implements OnInit {
   }
 
   register(){
-    var traderId = this.form.form.controls.traderId.value
+    var traderId = this.randomInt(100000, 999999)
     var firstName = this.form.form.controls.firstName.value
     var lastName = this.form.form.controls.lastName.value
     var password = this.form.form.controls.password.value
@@ -27,4 +27,13 @@ export class RegisterationComponent implements OnInit {
     this.authService.register(user)
   }
 
+  /**
+   * generate a random integer between min and max
+   * @param {Number} min 
+   * @param {Number} max
+   * @return {Number} random generated integer 
+   */
+  randomInt(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 }
