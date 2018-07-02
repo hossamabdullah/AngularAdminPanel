@@ -3,12 +3,13 @@ export class AssetTransfer{
     newOwner: String;
     transactionId: String;
     timestamp: String;
-    type: String;
+    percentage: String;
 
-    constructor(assetId, ownerId, transactionId, timestamp){
+    constructor(assetId, ownerId, transactionId, timestamp, percentage){
         this.commodity = assetId;
         this.newOwner = ownerId;
         this.transactionId = transactionId;
         this.timestamp = timestamp;
+        this.percentage = percentage;
     }
 }
