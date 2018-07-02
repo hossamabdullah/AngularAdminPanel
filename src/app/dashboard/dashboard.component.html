@@ -13,6 +13,7 @@
         <tr>
             <th>assetId</th>
             <th>ownerId</th>
+            <th>percentage</th>
             <th>transactionId</th>
             <th>timestamp</th>
         </tr>
@@ -21,6 +22,7 @@
         <tr *ngFor="let tx of transactions">
               <td>{{tx.commodity}}</td>
               <td>{{tx.newOwner}}</td>
+              <td>{{tx.percentage}}</td>
               <td>{{tx.transactionId}}</td>
               <td>{{tx.timestamp}}</td>
         </tr>

@@ -41,15 +41,16 @@ export class DashboardComponent implements OnInit {
 
   save(){
     let assetId = this.sampleForm.controls.assetId.value;
-    let ownerId = this.sampleForm.controls.ownerId.value;
     let assetIds: String[];
+    let ownerId = this.sampleForm.controls.ownerId.value;
+    let percentage = this.hyperLedgerService.callPercentage(assetIds);
     //how to get list of asset ids
     assetIds.forEach((assetId, index, object)=>{
       object[index] = "resource:org.example.mynetwork.Commodity#"+assetId;
     })
     ownerId = "resource:org.example.mynetwork.Trader#"+ownerId;
 
-    let transaction= new AssetTransfer(assetIds, ownerId, null, null);
+    let transaction= new AssetTransfer(assetIds, ownerId, null, null, percentage);
 
     
     this.hyperLedgerService.addAssetTransfer(transaction).subscribe(

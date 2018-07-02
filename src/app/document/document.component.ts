@@ -23,7 +23,8 @@ export class DocumentComponent implements OnInit {
       'name': new FormControl(),
       'description': new FormControl(),
       'value': new FormControl(),
-      'owner': new FormControl()
+      'owner': new FormControl(),
+      'type': new FormControl()
     });
   }
 
@@ -46,7 +47,8 @@ export class DocumentComponent implements OnInit {
       value: '',
       name: '',
       description: '',
-      owner: ''
+      owner: '',
+      type: ''
     });
     this.isSaveMode=true;
     this.isEditMode=false;
@@ -58,7 +60,8 @@ export class DocumentComponent implements OnInit {
       value: asset.value,
       name: asset.name,
       description: asset.description,
-      owner: asset.owner
+      owner: asset.owner,
+      type: asset.type
     });    
     this.isSaveMode=false;
     this.isEditMode=true;
@@ -71,9 +74,10 @@ export class DocumentComponent implements OnInit {
     let name = this.sampleForm.controls.name.value;
     let value = this.sampleForm.controls.value.value;
     let owner = this.sampleForm.controls.owner.value;
+    let type = this.sampleForm.controls.type.value;
     if(this.isSaveMode){
       owner = "resource:org.example.mynetwork.Trader#"+owner;
-      let asset= new Asset(tradingSymbol, name, description, value, owner)
+      let asset= new Asset(tradingSymbol, name, description, value, owner, type)
       this.hyperLedgerService.addAsset(asset).subscribe(
         (response) => {
           this.loadData()
@@ -82,7 +86,7 @@ export class DocumentComponent implements OnInit {
       );
     }else{
       owner = "resource:org.example.mynetwork.Trader#"+owner.substring(1);
-      let asset= new Asset(null, name, description, value, owner)
+      let asset= new Asset(null, name, description, value, owner, type)
       this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
         (response) => {
           this.loadData()

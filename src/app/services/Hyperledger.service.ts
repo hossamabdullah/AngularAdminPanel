@@ -76,4 +76,16 @@ export class HyperledgerService {
         return this.http.post('http://173.193.79.254:31090/api/Trade', transaction);
     }
 
+    callPercentage(assetIds: String[]){
+        let alllength = 0;
+        this.http.get('http://173.193.79.254:31090/api/Commodity').subscribe(
+            (response)=>{
+                console.log(response.json().length)
+                alllength = response.json().length
+            }
+            ,(error)=> console.log(error)
+        )
+        return (assetIds.length / alllength)*100;
+    }
+
 }
