@@ -1,8 +1,9 @@
 export class AssetTransfer{
-    commodity: String;
+    commodity: String[];
     newOwner: String;
     transactionId: String;
     timestamp: String;
+    type: String;
 
     constructor(assetId, ownerId, transactionId, timestamp){
         this.commodity = assetId;
