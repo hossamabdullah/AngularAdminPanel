@@ -29,7 +29,9 @@ export class DashboardComponent implements OnInit {
         this.transactions.map(
           value => {
             value.newOwner = value.newOwner.substring(37);
-            value.commodity = value.commodity.substring(40);
+            value.commodity.forEach((commo, index, object)=>{
+              object[index] = commo.substring(40);
+            });
           }
         )
       },(error) => console.log(error)
@@ -40,10 +42,14 @@ export class DashboardComponent implements OnInit {
   save(){
     let assetId = this.sampleForm.controls.assetId.value;
     let ownerId = this.sampleForm.controls.ownerId.value;
-    assetId = "resource:org.example.mynetwork.Commodity#"+assetId;
+    let assetIds: String[];
+    //how to get list of asset ids
+    assetIds.forEach((assetId, index, object)=>{
+      object[index] = "resource:org.example.mynetwork.Commodity#"+assetId;
+    })
     ownerId = "resource:org.example.mynetwork.Trader#"+ownerId;
 
-    let transaction= new AssetTransfer(assetId, ownerId, null, null);
+    let transaction= new AssetTransfer(assetIds, ownerId, null, null);
 
     
     this.hyperLedgerService.addAssetTransfer(transaction).subscribe(
