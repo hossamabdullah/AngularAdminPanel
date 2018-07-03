@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
         this.transactions.map(
           value => {
             value.newOwner = value.newOwner.substring(37);
+            value.transactionId = value.transactionId.substring(0,10)+"..."
             value.commodity.forEach((commo, index, object)=>{
               object[index] = commo.substring(40);
             });
