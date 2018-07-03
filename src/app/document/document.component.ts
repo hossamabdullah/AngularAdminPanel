@@ -22,7 +22,7 @@ export class DocumentComponent implements OnInit {
   ngOnInit() {
     this.loadData();
     this.sampleForm = new FormGroup({
-      tradingSymbol: new FormControl(),
+      count: new FormControl(),
       name: new FormControl(),
       description: new FormControl(),
       value: new FormControl(),
@@ -47,7 +47,7 @@ export class DocumentComponent implements OnInit {
           }
         });
         this.types = Array.from(this.assetsMap.keys());
-        this.selectedAssets = this.assetsMap.get(this.types[0])
+        this.selectedAssets = this.assetsMap.get(this.types[0]);
         console.log(this.assetsMap);
         console.log(this.types);
       },
@@ -58,12 +58,12 @@ export class DocumentComponent implements OnInit {
   }
 
   updateSelectedType(type) {
-    this.selectedAssets = this.assetsMap.get(type)
+    this.selectedAssets = this.assetsMap.get(type);
   }
 
   enableSaveMode() {
     this.sampleForm.setValue({
-      tradingSymbol: "",
+      count: "",
       value: "",
       name: "",
       description: "",
@@ -76,7 +76,7 @@ export class DocumentComponent implements OnInit {
 
   enableEditAsset(event, asset: Asset) {
     this.sampleForm.setValue({
-      tradingSymbol: asset.tradingSymbol,
+      count: "",
       value: asset.value,
       name: asset.name,
       description: asset.description,
@@ -88,7 +88,7 @@ export class DocumentComponent implements OnInit {
   }
 
   save() {
-    let tradingSymbol = this.sampleForm.controls.tradingSymbol.value;
+    let count = this.sampleForm.controls.count.value;
     let description = this.sampleForm.controls.description.value;
     let name = this.sampleForm.controls.name.value;
     let value = this.sampleForm.controls.value.value;
@@ -96,29 +96,32 @@ export class DocumentComponent implements OnInit {
     let type = this.sampleForm.controls.type.value;
     if (this.isSaveMode) {
       owner = "resource:org.example.mynetwork.Trader#" + owner;
-      let asset = new Asset(
-        tradingSymbol,
-        name,
-        description,
-        value,
-        owner,
-        type
-      );
-      this.hyperLedgerService.addAsset(asset).subscribe(
-        response => {
-          this.loadData();
-        },
-        error => console.log(error)
-      );
+      for (let i = 0; i < count; i++) {
+        let tradingSymbol = this.randomInt(1000000000, 9999999999);
+        let asset = new Asset(
+          tradingSymbol,
+          name,
+          description,
+          value,
+          owner,
+          type
+        );
+        this.hyperLedgerService.addAsset(asset).subscribe(
+          response => {
+            this.loadData();
+          },
+          error => console.log(error)
+        );
+      }
     } else {
-      owner = "resource:org.example.mynetwork.Trader#" + owner.substring(1);
-      let asset = new Asset(null, name, description, value, owner, type);
-      this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
-        response => {
-          this.loadData();
-        },
-        error => console.log(error)
-      );
+      //   owner = "resource:org.example.mynetwork.Trader#" + owner.substring(1);
+      //   let asset = new Asset(null, name, description, value, owner, type);
+      //   this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
+      //     response => {
+      //       this.loadData();
+      //     },
+      //     error => console.log(error)
+      //   );
     }
   }
 
@@ -129,5 +132,9 @@ export class DocumentComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }
