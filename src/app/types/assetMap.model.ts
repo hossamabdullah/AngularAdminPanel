@@ -1,9 +1,11 @@
-export class Asset{
-    type: String;
-    asset: Asset[];
+import { Asset } from "./asset.model";
 
-    constructor(type, asset){
+export class AssetMap{
+    type: String;
+    assets: Asset[];
+
+    constructor(type, assets){
         this.type = type;
-        this.asset = asset;
+        this.assets = assets;
     }
 }
