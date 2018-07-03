@@ -77,7 +77,7 @@ export class HyperledgerService {
 
     /******/
     
-    callPercentage(assetIds: string[], type: string){
+    callPercentage(count, type: string){
         let alllength = 0;
         this.http.get('http://173.193.79.254:31090/api/Commodity').subscribe(
             (response)=>{
@@ -91,7 +91,7 @@ export class HyperledgerService {
             }
             ,(error)=> console.log(error)
         )
-        return (assetIds.length / alllength)*100;
+        return (count/ alllength)*100;
     }
 
     getAssetsByType(){

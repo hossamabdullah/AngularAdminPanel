@@ -10,95 +10,69 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  assets: Asset[];
+  assetsMap = new Map<string, Asset[]>();
   sampleForm;
-  isSaveMode=true;
-  isEditMode=false;
+  types: string[];
+  selectedType: string;
+  selectedAssets: Asset[];
 
   constructor(private hyperLedgerService: HyperledgerService, private authService: AuthService) {}
 
   ngOnInit() {
     this.loadData();
     this.sampleForm = new FormGroup({
-      'tradingSymbol': new FormControl(),
-      'name': new FormControl(),
-      'description': new FormControl(),
-      'value': new FormControl(),
-      'owner': new FormControl(),
-      'type': new FormControl()
+      'type': new FormControl(),
+      'count': new FormControl(),
+      'ownerId': new FormControl()
     });
   }
 
-  loadData(){
-    this.hyperLedgerService.getAssets().subscribe(
-      (response) => {
-        this.assets = response.json() as Asset[]
-        this.assets.forEach((asset, index, object)=>{
-          if(asset.owner.substring(38) != this.authService.getUser().traderId)
-              object.splice(index,1);
-        })
-        this.assets.map(
-          value => {
-            value.owner = value.owner.substring(37);
+  loadData() {
+    this.assetsMap.clear();
+    this.hyperLedgerService.getAssetsByType().subscribe(
+      response => {
+        let assets = response.json();
+        assets.forEach((asset, index, object) => {
+          asset.owner = asset.owner.substring(37);
+          if (this.assetsMap.has(asset.type)) {
+            let assets = this.assetsMap.get(asset.type);
+            assets.push(asset);
+            this.assetsMap.set(asset.type, assets);
+          } else {
+            this.assetsMap.set(asset.type, [asset]);
           }
-        )
-      },(error) => console.log(error)
+        });
+        this.types = Array.from(this.assetsMap.keys());
+        this.selectedAssets = this.assetsMap.get(this.types[0]);
+        console.log(this.assetsMap);
+        console.log(this.types);
+      },
+      error => {
+        console.log(error);
+      }
     );
+  }
+
+  updateSelectedType(type) {
+    this.selectedAssets = this.assetsMap.get(type);
   }
 
   enableSaveMode(){
     this.sampleForm.setValue({
-      tradingSymbol: '',
-      value: '',
-      name: '',
-      description: '',
-      owner: '',
-      type: ''
+      type:'',
+      count:'',
+      ownerId:''
     });
-    this.isSaveMode=true;
-    this.isEditMode=false;
-  }
-
-  enableEditAsset(event, asset:Asset){
-    this.sampleForm.setValue({
-      tradingSymbol: asset.tradingSymbol,
-      value: asset.value,
-      name: asset.name,
-      description: asset.description,
-      owner: asset.owner,
-      type: asset.type
-    });    
-    this.isSaveMode=false;
-    this.isEditMode=true;
   }
 
 
   save(){
-    let tradingSymbol = this.sampleForm.controls.tradingSymbol.value;
-    let description = this.sampleForm.controls.description.value;
-    let name = this.sampleForm.controls.name.value;
-    let value = this.sampleForm.controls.value.value;
-    let owner = this.sampleForm.controls.owner.value;
     let type = this.sampleForm.controls.type.value;
-    if(this.isSaveMode){
-      owner = "resource:org.example.mynetwork.Trader#"+owner;
-      let asset= new Asset(tradingSymbol, name, description, value, owner, type)
-      this.hyperLedgerService.addAsset(asset).subscribe(
-        (response) => {
-          this.loadData()
-        },
-        (error) => console.log(error)
-      );
-    }else{
-      owner = "resource:org.example.mynetwork.Trader#"+owner.substring(1);
-      let asset= new Asset(null, name, description, value, owner, type)
-      this.hyperLedgerService.updateAsset(tradingSymbol, asset).subscribe(
-        (response) => {
-          this.loadData()
-        },
-        (error) => console.log(error)
-      );
-    }
+    let count = this.sampleForm.controls.count.value;
+    let ownerId = this.sampleForm.controls.ownerId.value;
+    ownerId = "resource:org.example.mynetwork.Trader#" + ownerId;
+    let percentage = this.hyperLedgerService.callPercentage(count, type);
+    
   }
 
   removeAsset(event, asset:Asset){
