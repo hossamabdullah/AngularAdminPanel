@@ -9,16 +9,16 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./document.component.css']
 })
 export class DocumentComponent implements OnInit {
-  assets: Asset[];
+  assetsMap: Map<string, Asset[]>
   sampleForm;
   isSaveMode=true;
   isEditMode=false;
+  types: string[];
 
   constructor(private hyperLedgerService: HyperledgerService) {}
 
   ngOnInit() {
     this.loadData();
-    this.hyperLedgerService.getAssetTypes();
     this.sampleForm = new FormGroup({
       'tradingSymbol': new FormControl(),
       'name': new FormControl(),
@@ -30,16 +30,9 @@ export class DocumentComponent implements OnInit {
   }
 
   loadData(){
-    this.hyperLedgerService.getAssets().subscribe(
-      (response) => {
-        this.assets = response.json()
-        this.assets.map(
-          value => {
-            value.owner = value.owner.substring(37);
-          }
-        )
-      },(error) => console.log(error)
-    );
+    this.assetsMap = this.hyperLedgerService.getAssetsByType()
+    this.types = Array.from(this.assetsMap.keys())
+    console.log(this.types)
   }
 
   enableSaveMode(){
