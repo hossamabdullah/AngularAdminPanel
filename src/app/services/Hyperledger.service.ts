@@ -90,26 +90,7 @@ export class HyperledgerService {
     }
 
     getAssetsByType(){
-        let assetsMap = new Map<string, Asset[]>();
-        this.http.get('http://173.193.79.254:31090/api/Commodity').subscribe(
-            (response) => {
-                let assets = response.json()
-                assets.forEach((asset, index, object)=>{
-                    asset.owner = asset.owner.substring(37);
-                    if(assetsMap.has(asset.type)){
-                        let assets = assetsMap.get(asset.type)
-                        assets.push(asset)
-                        assetsMap.set(asset.type, assets)
-                    }else{
-                        assetsMap.set(asset.type, [asset])
-                    }
-                })
-            },
-            (error) =>{
-                console.log(error)
-            }
-        )
-        return assetsMap;
+        return this.http.get('http://173.193.79.254:31090/api/Commodity');
     }
 
     /**
