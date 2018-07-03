@@ -14,6 +14,7 @@ export class DocumentComponent implements OnInit {
   isSaveMode = true;
   isEditMode = false;
   types: string[];
+  selectedType: string;
 
   constructor(private hyperLedgerService: HyperledgerService) {}
 
@@ -44,6 +45,7 @@ export class DocumentComponent implements OnInit {
           }
         });
         this.types = Array.from(this.assetsMap.keys());
+        this.selectedType = this.types[0];
         console.log(this.assetsMap);
         console.log(this.types);
       },
@@ -52,6 +54,7 @@ export class DocumentComponent implements OnInit {
       }
     );
   }
+
 
   enableSaveMode() {
     this.sampleForm.setValue({
