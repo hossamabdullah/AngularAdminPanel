@@ -76,24 +76,8 @@ export class HyperledgerService {
     }
 
     /******/
-    
-    callPercentage(count, type: string){
-        let alllength = 0;
-        this.http.get('http://173.193.79.254:31090/api/Commodity').subscribe(
-            (response)=>{
-                console.log(response.json().length)
-                let assets: Asset[] = response.json()
-                assets.forEach((asset, index, array)=>{
-                    if(asset.type == type){
-                        alllength = alllength + 1;
-                    }
-                })
-            }
-            ,(error)=> console.log(error)
-        )
-        return (count/ alllength)*100;
-    }
 
+    //TODO check this
     getAssetsByType(){
         return this.http.get('http://173.193.79.254:31090/api/Commodity');
     }
