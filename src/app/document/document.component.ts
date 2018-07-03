@@ -15,6 +15,7 @@ export class DocumentComponent implements OnInit {
   isEditMode = false;
   types: string[];
   selectedType: string;
+  selectedAssets: Asset[];
 
   constructor(private hyperLedgerService: HyperledgerService) {}
 
@@ -31,6 +32,7 @@ export class DocumentComponent implements OnInit {
   }
 
   loadData() {
+    this.assetsMap.clear();
     this.hyperLedgerService.getAssetsByType().subscribe(
       response => {
         let assets = response.json();
@@ -45,7 +47,7 @@ export class DocumentComponent implements OnInit {
           }
         });
         this.types = Array.from(this.assetsMap.keys());
-        this.selectedType = this.types[0];
+        this.selectedAssets = this.assetsMap.get(this.types[0])
         console.log(this.assetsMap);
         console.log(this.types);
       },
@@ -55,6 +57,9 @@ export class DocumentComponent implements OnInit {
     );
   }
 
+  updateSelectedType(type) {
+    this.selectedAssets = this.assetsMap.get(type)
+  }
 
   enableSaveMode() {
     this.sampleForm.setValue({
