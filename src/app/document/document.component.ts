@@ -18,6 +18,7 @@ export class DocumentComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
+    this.hyperLedgerService.getAssetTypes();
     this.sampleForm = new FormGroup({
       'tradingSymbol': new FormControl(),
       'name': new FormControl(),

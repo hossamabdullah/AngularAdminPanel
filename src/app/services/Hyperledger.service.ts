@@ -4,6 +4,7 @@ import { Asset } from '../types/asset.model';
 import { Http, Headers } from '@angular/http';
 import { AssetTransfer } from '../types/assetTransfer.model';
 import { FirebaseService } from './firebase.service';
+import { AssetMap } from '../types/assetMap.model';
 @Injectable({
     providedIn: 'root'
 })
@@ -66,8 +67,6 @@ export class HyperledgerService {
         return this.http.delete('http://173.193.79.254:31090/api/Commodity/' + asset.tradingSymbol);
     }
 
-
-
     getAssetTransfer() {
         return this.http.get('http://173.193.79.254:31090/api/Trade');
     }
@@ -76,6 +75,8 @@ export class HyperledgerService {
         return this.http.post('http://173.193.79.254:31090/api/Trade', transaction);
     }
 
+    /******/
+    
     callPercentage(assetIds: String[]){
         let alllength = 0;
         this.http.get('http://173.193.79.254:31090/api/Commodity').subscribe(
@@ -86,6 +87,46 @@ export class HyperledgerService {
             ,(error)=> console.log(error)
         )
         return (assetIds.length / alllength)*100;
+    }
+
+    getAssetTypes(){
+        let assetsMap = new Map<string, Asset[]>();
+        this.http.get('http://173.193.79.254:31090/api/Commodity').subscribe(
+            (response) => {
+                let assets = response.json()
+                assets.forEach((asset, index, object)=>{
+                    if(assetsMap.has(asset.type)){
+                        let assets = assetsMap.get(asset.types)
+                        assets.push(asset)
+                        assetsMap.set(asset.type, assets)
+                    }else{
+                        assetsMap.set(asset.type, [asset])
+                    }
+                })
+            },
+            (error) =>{
+                console.log(error)
+            }
+        )
+        console.log("hossssssssssssssssssssssssam")
+        console.log(assetsMap)
+    }
+
+    /**
+     * 
+     * do not call this function
+     * 
+     * @param obj 
+     * @param list 
+     */
+    private containsObject(obj, list) {
+        var i;
+        for (i = 0; i < list.length; i++) {
+            if (list[i].type === obj) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
