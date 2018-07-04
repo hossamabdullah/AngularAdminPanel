@@ -67,6 +67,8 @@ export class HyperledgerService {
         return this.http.delete('http://173.193.79.254:31090/api/Commodity/' + asset.tradingSymbol);
     }
 
+
+    
     getAssetTransfer() {
         return this.http.get('http://173.193.79.254:31090/api/Trade');
     }
@@ -81,22 +83,4 @@ export class HyperledgerService {
     getAssetsByType(){
         return this.http.get('http://173.193.79.254:31090/api/Commodity');
     }
-
-    /**
-     * 
-     * do not call this function
-     * 
-     * @param obj 
-     * @param list 
-     */
-    private containsObject(obj, list) {
-        var i;
-        for (i = 0; i < list.length; i++) {
-            if (list[i].type === obj) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 }
